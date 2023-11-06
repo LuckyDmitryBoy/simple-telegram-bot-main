@@ -55,7 +55,14 @@ public class TelegramBot extends TelegramLongPollingBot {
     static final String CNY = "/cny";
     static final String KZT = "/kzt";
     static final String TRY = "/try";
-    static  final String exchange="Курсы валют";
+    static  final String EXCHANGE ="Курсы валют";
+    static final String WEATHER="Прогноз погоды";
+    static final String MINSK="/Minsk";
+    static final String GOMEL="/Gomel";
+    static final String GRODNO="/Grodno";
+    static final String BREST="/Brest";
+    static final String MOGILEV="/Mogilev";
+    static final String VITEBSK="/Vitebsk";
     static final String NEXT_JOKE="NEXT_JOKE";
     static final int MAX_JOKE_ID=19;
     static final String ERROR_TEXT = "Error occurred: ";
@@ -123,7 +130,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         joke.ifPresent(randomJoke -> AddButtonAndSendMessage(chatId,randomJoke.getBody()));
                         break;
                     case "/weather":
-                        weartherForecast(chatId,"Minsk");
+                        weartherForecast(chatId,"Минск");
                         break;
                     case "/usd":
                         currencyExchange(chatId,"USD");
@@ -153,7 +160,10 @@ public class TelegramBot extends TelegramLongPollingBot {
                         currencyExchange(chatId,"TRY");
                         break;
                     case "Курсы валют":
-                        currencyExchange1(chatId,"Курс валют:");
+                        currencyExchangeButtons(chatId,"Курс валют:");
+                        break;
+                    case "Прогноз погоды":
+                        weartherForecastButtons(chatId, "Выберете Ваш населённый пункт");
                         break;
                     default:
                         prepareAndSendMessage(chatId, "Sorry, command was not recognized");
@@ -203,6 +213,30 @@ public class TelegramBot extends TelegramLongPollingBot {
             else if(callbackData.equals(TRY)){
                 var message="TRY";
                 currencyExchange(chatId,message);
+            }
+            else if(callbackData.equals(MINSK)){
+                var message="Minsk";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(GRODNO)){
+                var message="Grodno";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(GOMEL)){
+                var message="Gomel";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(MOGILEV)){
+                var message="Mogilev";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(BREST)){
+                var message="Brest";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(VITEBSK)){
+                var message="Vitebsk";
+                weartherForecast(chatId,message);
             }
         }
     }
@@ -263,9 +297,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         ReplyKeyboardMarkup keyboardMarkup=new ReplyKeyboardMarkup();//создали экранную клавиатуру
         List<KeyboardRow> keyboardRowList=new ArrayList<>();//создаем и добавляем иконки меню экранной клавиатуры
         KeyboardRow row=new KeyboardRow();//создали ряд
-        row.add("weather");
+        row.add(WEATHER);
         row.add("joke");
-        row.add(exchange);
+        row.add(EXCHANGE);
         keyboardRowList.add(row);//добавили ряд
         row=new KeyboardRow();
         row.add("register");
@@ -315,7 +349,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
          sendMessage(chatId, currency);
     }
-    private void currencyExchange1(long chatId,String text){
+    private void currencyExchangeButtons(long chatId,String text){
         SendMessage message=new SendMessage();
         message.setText(text);
         message.setChatId(chatId);
@@ -366,6 +400,43 @@ public class TelegramBot extends TelegramLongPollingBot {
         markupInLine.setKeyboard(rowsInLine);
         message.setReplyMarkup(markupInLine);
         send(message);
+    }
+    private void weartherForecastButtons(long chatId,String text){
+        SendMessage message=new SendMessage();
+        message.setText(text);
+        message.setChatId(chatId);
+        InlineKeyboardMarkup markupInLine=new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+        var minsk=new InlineKeyboardButton();
+        var gomel=new InlineKeyboardButton();
+        var grodno=new InlineKeyboardButton();
+        var brest=new InlineKeyboardButton();
+        var vitebsk=new InlineKeyboardButton();
+        var mogilev=new InlineKeyboardButton();
+        minsk.setText("Минск");
+        gomel.setText("Гомель");
+        grodno.setText("Гродно");
+        brest.setText("Брест");
+        vitebsk.setText("Витебск");
+        mogilev.setText("Могилёв");
+        minsk.setCallbackData(MINSK);
+        gomel.setCallbackData(GOMEL);
+        grodno.setCallbackData(GRODNO);
+        brest.setCallbackData(BREST);
+        vitebsk.setCallbackData(VITEBSK);
+        mogilev.setCallbackData(MOGILEV);
+        rowInLine.add(minsk);
+        rowInLine.add(gomel);
+        rowInLine.add(grodno);
+        rowInLine.add(brest);
+        rowInLine.add(vitebsk);
+        rowInLine.add(mogilev);
+        rowsInLine.add(rowInLine);
+        markupInLine.setKeyboard(rowsInLine);
+        message.setReplyMarkup(markupInLine);
+        send(message);
+
     }
     private void weartherForecast(long chatId,String messageText){ //метод для прогноза погоды
         WeartherModel weartherModel = new WeartherModel();
