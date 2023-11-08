@@ -63,6 +63,33 @@ public class TelegramBot extends TelegramLongPollingBot {
     static final String BREST="/Brest";
     static final String MOGILEV="/Mogilev";
     static final String VITEBSK="/Vitebsk";
+    static final String BOBRUISK="/Bobruisk";
+    static final String BARANOVICHI="/Baranovichi";
+    static final String BORISOV="/Borisov";
+    static final String PINSK="/Pinsk";
+    static final String ORSHA="/Orsha";
+    static final String MOZYR="/Mozyr";
+    static final String NOVOPOLOTSK="/Novopolotsk";
+    static final String SOLIGORSK="/Soligorsk";
+    static final String LIDA="/Lida";
+    static final String MOLODECHNO="/Molodechno";
+    static final String POLOTSK="/Polotsk";
+    static final String ZHLOBIN="/Zhlobin";
+    static final String SVETLOGORSK="/Svetlogorsk";
+    static final String RECHITSA="/Rechitsa";
+    static final String ZHODINO="/Zhodino";
+    static final String SLUTSK="/Slutsk";
+    static final String KOBRIN="/Kobrin";
+    static final String SLONIM="/Slonim";
+    static final String VOLKOVYSK="/Volkovysk";
+    static final String KALINKOVICHI="/Kalinkovichi";
+    static final String SMORGON="/Smorgon";
+    static final String ROGACHEV="/Rogachev";
+    static final String OSIPOVICHI="/Osipovichi";
+    static final String GORKI="/Gorki";
+    static final String BEREZA="/Bereza";
+    static final String NOVOGRUDOK="/Novogrudok";
+    static final String VILEYKA="/Vileyka";
     static final String NEXT_JOKE="NEXT_JOKE";
     static final int MAX_JOKE_ID=19;
     static final String ERROR_TEXT = "Error occurred: ";
@@ -238,6 +265,114 @@ public class TelegramBot extends TelegramLongPollingBot {
                 var message="Vitebsk";
                 weartherForecast(chatId,message);
             }
+            else if(callbackData.equals(BOBRUISK)){
+                var message="Babruysk";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(BARANOVICHI)){
+                var message="Baranovichi";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(BORISOV)){
+                var message="Borisov";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(PINSK)){
+                var message="Pinsk";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(ORSHA)){
+                var message="Orsha";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(MOZYR)){
+                var message="Mazyr";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(NOVOPOLOTSK)){
+                var message="Navapolatsk";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(SOLIGORSK)){
+                var message="Salihorsk";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(LIDA)){
+                var message="Lida";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(MOLODECHNO)){
+                var message="Molodechno";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(POLOTSK)){
+                var message="Polatsk";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(ZHLOBIN)){
+                var message="Zhlobin";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(SVETLOGORSK)){
+                var message="Svyetlahorsk";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(RECHITSA)){
+                var message="Rechitsa";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(ZHODINO)){
+                var message="Zhodzina";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(SLUTSK)){
+                var message="Slutsk";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(KOBRIN)){
+                var message="Kobrin";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(SLONIM)){
+                var message="Slonim";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(VOLKOVYSK)){
+                var message="Vawkavysk";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(KALINKOVICHI)){
+                var message="Kalinkavichy";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(SMORGON)){
+                var message="Smarhon";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(ROGACHEV)){
+                var message="Rahachow";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(OSIPOVICHI)){
+                var message="Asipovichy";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(GORKI)){
+                var message="Gorki";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(BEREZA)){
+                var message="Bereza";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(NOVOGRUDOK)){
+                var message="Navahrudak";
+                weartherForecast(chatId,message);
+            }
+            else if(callbackData.equals(VILEYKA)){
+                var message="Vileyka";
+                weartherForecast(chatId,message);
+            }
         }
     }
     private Optional<Joke> getRandomJoke(){
@@ -356,6 +491,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markupInLine=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var usd=new InlineKeyboardButton();
         var eur=new InlineKeyboardButton();
         var rub=new InlineKeyboardButton();
@@ -369,7 +505,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         rowInLine.add(eur);
         rowInLine.add(rub);
         rowsInLine.add(rowInLine);
+
         rowInLine=new ArrayList<>();
+
         var pln=new InlineKeyboardButton();
         var uah=new InlineKeyboardButton();
         var gbp=new InlineKeyboardButton();
@@ -383,7 +521,9 @@ public class TelegramBot extends TelegramLongPollingBot {
         rowInLine.add(uah);
         rowInLine.add(gbp);
         rowsInLine.add(rowInLine);
+
         rowInLine=new ArrayList<>();
+
         var cny=new InlineKeyboardButton();
         var kzt=new InlineKeyboardButton();
         var tru=new InlineKeyboardButton();
@@ -397,6 +537,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         rowInLine.add(kzt);
         rowInLine.add(tru);
         rowsInLine.add(rowInLine);
+
         markupInLine.setKeyboard(rowsInLine);
         message.setReplyMarkup(markupInLine);
         send(message);
@@ -408,31 +549,181 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markupInLine=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var minsk=new InlineKeyboardButton();
         var gomel=new InlineKeyboardButton();
         var grodno=new InlineKeyboardButton();
-        var brest=new InlineKeyboardButton();
-        var vitebsk=new InlineKeyboardButton();
-        var mogilev=new InlineKeyboardButton();
         minsk.setText("Минск");
         gomel.setText("Гомель");
         grodno.setText("Гродно");
-        brest.setText("Брест");
-        vitebsk.setText("Витебск");
-        mogilev.setText("Могилёв");
         minsk.setCallbackData(MINSK);
         gomel.setCallbackData(GOMEL);
         grodno.setCallbackData(GRODNO);
-        brest.setCallbackData(BREST);
-        vitebsk.setCallbackData(VITEBSK);
-        mogilev.setCallbackData(MOGILEV);
         rowInLine.add(minsk);
         rowInLine.add(gomel);
         rowInLine.add(grodno);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var brest=new InlineKeyboardButton();
+        var vitebsk=new InlineKeyboardButton();
+        var mogilev=new InlineKeyboardButton();
+        brest.setText("Брест");
+        vitebsk.setText("Витебск");
+        mogilev.setText("Могилёв");
+        brest.setCallbackData(BREST);
+        vitebsk.setCallbackData(VITEBSK);
+        mogilev.setCallbackData(MOGILEV);
         rowInLine.add(brest);
         rowInLine.add(vitebsk);
         rowInLine.add(mogilev);
         rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var bobruisk=new InlineKeyboardButton();
+        var baranovichi=new InlineKeyboardButton();
+        var borisov=new InlineKeyboardButton();
+        bobruisk.setText("Бобруйск");
+        baranovichi.setText("Барановичи");
+        borisov.setText("Борисов");
+        bobruisk.setCallbackData(BOBRUISK);
+        baranovichi.setCallbackData(BARANOVICHI);
+        borisov.setCallbackData(BORISOV);
+        rowInLine.add(bobruisk);
+        rowInLine.add(baranovichi);
+        rowInLine.add(borisov);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var pinsk=new InlineKeyboardButton();
+        var orsha=new InlineKeyboardButton();
+        var mozyr=new InlineKeyboardButton();
+        pinsk.setText("Пинск");
+        orsha.setText("Орша");
+        mozyr.setText("Мозырь");
+        pinsk.setCallbackData(PINSK);
+        orsha.setCallbackData(ORSHA);
+        mozyr.setCallbackData(MOZYR);
+        rowInLine.add(pinsk);
+        rowInLine.add(orsha);
+        rowInLine.add(mozyr);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var novopolotsk=new InlineKeyboardButton();
+        var soligorsk=new InlineKeyboardButton();
+        var lida=new InlineKeyboardButton();
+        novopolotsk.setText("Новополоцк");
+        soligorsk.setText("Солигорск");
+        lida.setText("Лида");
+        novopolotsk.setCallbackData(NOVOPOLOTSK);
+        soligorsk.setCallbackData(SOLIGORSK);
+        lida.setCallbackData(LIDA);
+        rowInLine.add(novopolotsk);
+        rowInLine.add(soligorsk);
+        rowInLine.add(lida);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var molodechno=new InlineKeyboardButton();
+        var polotsk=new InlineKeyboardButton();
+        var zhlobin=new InlineKeyboardButton();
+        molodechno.setText("Молодечно");
+        polotsk.setText("Полоцк");
+        zhlobin.setText("Жлобин");
+        molodechno.setCallbackData(MOLODECHNO);
+        polotsk.setCallbackData(POLOTSK);
+        zhlobin.setCallbackData(ZHLOBIN);
+        rowInLine.add(molodechno);
+        rowInLine.add(polotsk);
+        rowInLine.add(zhlobin);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var svetlogorsk=new InlineKeyboardButton();
+        var rechitsa=new InlineKeyboardButton();
+        var zhodino=new InlineKeyboardButton();
+        svetlogorsk.setText("Светлогорск");
+        rechitsa.setText("Речица");
+        zhodino.setText("Жодино");
+        svetlogorsk.setCallbackData(SVETLOGORSK);
+        rechitsa.setCallbackData(RECHITSA);
+        zhodino.setCallbackData(ZHODINO);
+        rowInLine.add(svetlogorsk);
+        rowInLine.add(rechitsa);
+        rowInLine.add(zhodino);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var slutsk=new InlineKeyboardButton();
+        var kobrin=new InlineKeyboardButton();
+        var slonim=new InlineKeyboardButton();
+        slutsk.setText("Слуцк");
+        kobrin.setText("Кобрин");
+        slonim.setText("Слоним");
+        slutsk.setCallbackData(SLUTSK);
+        kobrin.setCallbackData(KOBRIN);
+        slonim.setCallbackData(SLONIM);
+        rowInLine.add(slutsk);
+        rowInLine.add(kobrin);
+        rowInLine.add(slonim);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var volkovysk=new InlineKeyboardButton();
+        var kalinkovichi=new InlineKeyboardButton();
+        var smorgon=new InlineKeyboardButton();
+        volkovysk.setText("Волковыск");
+        kalinkovichi.setText("Калинковичи");
+        smorgon.setText("Сморгонь");
+        volkovysk.setCallbackData(VOLKOVYSK);
+        kalinkovichi.setCallbackData(KALINKOVICHI);
+        smorgon.setCallbackData(SMORGON);
+        rowInLine.add(volkovysk);
+        rowInLine.add(kalinkovichi);
+        rowInLine.add(smorgon);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var rogachev=new InlineKeyboardButton();
+        var osipovichi=new InlineKeyboardButton();
+        var gorki=new InlineKeyboardButton();
+        rogachev.setText("Рогачёв");
+        osipovichi.setText("Осиповичи");
+        gorki.setText("Горки");
+        rogachev.setCallbackData(ROGACHEV);
+        osipovichi.setCallbackData(OSIPOVICHI);
+        gorki.setCallbackData(GORKI);
+        rowInLine.add(rogachev);
+        rowInLine.add(osipovichi);
+        rowInLine.add(gorki);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+
+        var bereza=new InlineKeyboardButton();
+        var novogrudok=new InlineKeyboardButton();
+        var vileyka=new InlineKeyboardButton();
+        bereza.setText("Берёза");
+        novogrudok.setText("Новогрудок");
+        vileyka.setText("Вилейка");
+        bereza.setCallbackData(BEREZA);
+        novogrudok.setCallbackData(NOVOGRUDOK);
+        vileyka.setCallbackData(VILEYKA);
+        rowInLine.add(bereza);
+        rowInLine.add(novogrudok);
+        rowInLine.add(vileyka);
+        rowsInLine.add(rowInLine);
+
         markupInLine.setKeyboard(rowsInLine);
         message.setReplyMarkup(markupInLine);
         send(message);
