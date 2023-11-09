@@ -28,9 +28,9 @@ public class CurrencyService {//класс, который регулирует 
         model.setCur_OfficialRate(object.getDouble("Cur_OfficialRate"));
 
 
-        return "Official rate of BYN to " + model.getCur_Abbreviation() + "\n" +
-                "on the date: " + getFormatDate(model) + "\n" +
-                "is: " + model.getCur_OfficialRate() + " BYN per " + model.getCur_Scale() + " " + model.getCur_Abbreviation();
+        return "Официальный курс BYN по отношению к " + model.getCur_Abbreviation() + "\n" +
+                "на дату: " + getFormatDate(model) + "\n" +
+                "составляет: " + model.getCur_OfficialRate() + " BYN за " + model.getCur_Scale() + " " + model.getCur_Abbreviation();
 
     }
 

@@ -40,11 +40,14 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Autowired
     private BotConfig config;
 
-    static final String HELP_TEXT = "This bot is created to demonstrate Spring capabilities.\n\n" +
-            "You can execute commands from the main menu on the left or by typing a command:\n\n" +
-            "Type /start to see a welcome message\n\n" +
-            "Type /mydata to see data stored about yourself\n\n" +
-            "Type /help to see this message again";
+    static final String HELP_TEXT = "С помощью данного бота Вы можете узнать погоду на сегодня, а так же курс валют и почитать анекдоты.\n\n" +
+            "Для того, чтобы использовать функционал бота используйте экранную клавиатуру и следуйте появившимя инструкциям.\n" +
+            "Так же можете воспользоваться функционалом бокового меню, для этого:\n\n"+
+            "Нажмите /start ,чтобы увидеть приветственное сообщение\n\n" +
+            "Нажмите /weather ,чтобы узнать прогноз погоды для Вашего города\n\n" +
+            "Нажмите /currency ,чтобы узнать актуальный курс валют на сегодня согласно НБРБ\n\n"+
+            "Нажмите /joke ,чтобы почитать анекдоты и поднять себе настроение\n\n"+
+            "Нажмите /help , чтобы ещё раз увидеть данное сообщение";
 
     static final String USD = "/usd";
     static final String EUR = "/eur";
@@ -91,26 +94,20 @@ public class TelegramBot extends TelegramLongPollingBot {
     static final String NOVOGRUDOK="/Novogrudok";
     static final String VILEYKA="/Vileyka";
     static final String NEXT_JOKE="NEXT_JOKE";
+    static final String JOKE="Анекдоты";
+    static final String HELP="Помощь";
+    static final String START="Старт";
     static final int MAX_JOKE_ID=19;
     static final String ERROR_TEXT = "Error occurred: ";
 
     public TelegramBot(BotConfig config) {
         this.config = config;
         List<BotCommand> listofCommands = new ArrayList<>();
-        listofCommands.add(new BotCommand("/start", "get a welcome message"));
-        listofCommands.add(new BotCommand("/joke", "get a joke"));
-        listofCommands.add(new BotCommand("/weather","get a weather forecast"));
-        listofCommands.add(new BotCommand("/help", "info how to use this bot"));
-        listofCommands.add(new BotCommand("/settings", "set your preferences"));
-        listofCommands.add(new BotCommand("/usd","get a actual exchange rates"));
-        listofCommands.add(new BotCommand("/eur","get a actual exchange rates"));
-        listofCommands.add(new BotCommand("/rub","get a actual exchange rates"));
-        listofCommands.add(new BotCommand("/pln","get a actual exchange rates"));
-        listofCommands.add(new BotCommand("/uah","get a actual exchange rates"));
-        listofCommands.add(new BotCommand("/gbp","get a actual exchange rates"));
-        listofCommands.add(new BotCommand("/cny","get a actual exchange rates"));
-        listofCommands.add(new BotCommand("/kzt","get a actual exchange rates"));
-        listofCommands.add(new BotCommand("/try","get a actual exchange rates"));
+        listofCommands.add(new BotCommand("/start", "нажмите, для того, чтобы начать пользоваться MultiBot"));
+        listofCommands.add(new BotCommand("/help", "информация о том, как пользоваться ботом"));
+        listofCommands.add(new BotCommand("/weather","прогноз погоды на сегодня для Вашего города"));
+        listofCommands.add(new BotCommand("/currency","актуальный курс валют на сегодня согласно НБРБ"));
+        listofCommands.add(new BotCommand("/joke", "анекдоты, для хорошего настроения)"));
         try {
             this.execute(new SetMyCommands(listofCommands, new BotCommandScopeDefault(), null));
         } catch (TelegramApiException e) {
@@ -157,43 +154,40 @@ public class TelegramBot extends TelegramLongPollingBot {
                         joke.ifPresent(randomJoke -> AddButtonAndSendMessage(chatId,randomJoke.getBody()));
                         break;
                     case "/weather":
-                        weartherForecast(chatId,"Минск");
+                        weartherForecastButtons(chatId, "Выберете Ваш или близлежащий к Вам населённый пункт:");
                         break;
-                    case "/usd":
-                        currencyExchange(chatId,"USD");
-                        break;
-                    case "/eur":
-                        currencyExchange(chatId,"EUR");
-                        break;
-                    case "/rub":
-                        currencyExchange(chatId,"RUB");
-                        break;
-                    case "/pln":
-                        currencyExchange(chatId,"PLN");
-                        break;
-                    case "/uah":
-                        currencyExchange(chatId,"UAH");
-                        break;
-                    case "/gbp":
-                        currencyExchange(chatId,"GBP");
-                        break;
-                    case "/cny":
-                        currencyExchange(chatId,"CNY");
-                        break;
-                    case "/kzt":
-                        currencyExchange(chatId,"KZT");
-                        break;
-                    case "/try":
-                        currencyExchange(chatId,"TRY");
+                    case "/currency":
+                        currencyExchangeButtons(chatId,"Выберете валюту, официальный курс которой Вы хотели бы узнать:");
                         break;
                     case "Курсы валют":
-                        currencyExchangeButtons(chatId,"Курс валют:");
+                        currencyExchangeButtons(chatId,"Выберете валюту, официальный курс которой Вы хотели бы узнать:");
                         break;
                     case "Прогноз погоды":
-                        weartherForecastButtons(chatId, "Выберете Ваш населённый пункт");
+                        weartherForecastButtons(chatId, "Выберете Ваш или близлежащий к Вам населённый пункт:");
+                        break;
+                    case "Анекдоты":
+                        var jokeMenu=getRandomJoke();
+                        jokeMenu.ifPresent(randomJoke -> AddButtonAndSendMessage(chatId,randomJoke.getBody()));
+                        break;
+                    case "Помощь":
+                        sendMessage(chatId,HELP_TEXT);
+                        break;
+                    case "Старт":
+                        registerUser(update.getMessage());
+                        showStart(chatId, update.getMessage().getChat().getFirstName());
+                        try {
+                            ObjectMapper objectMapper = new ObjectMapper();
+                            TypeFactory typeFactory = objectMapper.getTypeFactory();
+                            List<Joke> jokeList = objectMapper.readValue(new File("db/stupidstuff.json"),
+                                    typeFactory.constructCollectionType(List.class, Joke.class));
+                            jokeRepository.saveAll(jokeList);
+                        } catch (Exception e) {
+                            log.error(Arrays.toString(e.getStackTrace()));
+                        }
                         break;
                     default:
-                        prepareAndSendMessage(chatId, "Sorry, command was not recognized");
+                        prepareAndSendMessage(chatId, "Извините, команда не распознана.\n"+
+                                "Пожалуйста, введите корректную команду либо нажмите /help");
 
                 }
         }
@@ -389,7 +383,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
         var inLineKeyBoardButton=new InlineKeyboardButton();
         inLineKeyBoardButton.setCallbackData(NEXT_JOKE);
-        inLineKeyBoardButton.setText(EmojiParser.parseToUnicode("next joke "+":rolling_on_the_floor_laughing:"));
+        inLineKeyBoardButton.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
         rowInLine.add(inLineKeyBoardButton);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -407,7 +401,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
         var inLineKeyBoardButton=new InlineKeyboardButton();
         inLineKeyBoardButton.setCallbackData(NEXT_JOKE);
-        inLineKeyBoardButton.setText(EmojiParser.parseToUnicode("next joke "+":rolling_on_the_floor_laughing:"));
+        inLineKeyBoardButton.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
         rowInLine.add(inLineKeyBoardButton);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -418,7 +412,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void showStart(long chatId, String name) {
 
 
-        String answer = EmojiParser.parseToUnicode("Hi, " + name + ", nice to meet you!" + " :blush:");
+        String answer = EmojiParser.parseToUnicode("Здравствуйте, " + name + ", рад приветствовать Вас в своём многофункциональном telegram-боте MultiBot!" + " :blush:");
         log.info("Replied to user " + name);
 
 
@@ -433,14 +427,14 @@ public class TelegramBot extends TelegramLongPollingBot {
         List<KeyboardRow> keyboardRowList=new ArrayList<>();//создаем и добавляем иконки меню экранной клавиатуры
         KeyboardRow row=new KeyboardRow();//создали ряд
         row.add(WEATHER);
-        row.add("joke");
         row.add(EXCHANGE);
-        keyboardRowList.add(row);//добавили ряд
-        row=new KeyboardRow();
-        row.add("register");
-        row.add("my data");
-        row.add("delete my data");
+        row.add(JOKE);
         keyboardRowList.add(row);
+
+        row=new KeyboardRow();
+        row.add(START);
+        row.add(HELP);
+        keyboardRowList.add(row);//добавили ряд
         keyboardMarkup.setKeyboard(keyboardRowList);
         message.setReplyMarkup(keyboardMarkup);
         send(message);
