@@ -508,22 +508,22 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
     private Optional<Joke> getRandomJokePogoda(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(201,MAX_JOKE_POGODA)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private Optional<Joke> getRandomJokeProgram(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(301,MAX_JOKE_PROGRAMISTY)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private Optional<Joke> getRandomJokeVospl(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(401,MAX_JOKE_VOSEMNADCATPLUS)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private Optional<Joke> getRandomJokeArmia(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(501,MAX_JOKE_ARMIA)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private Optional<Joke> getRandomJokeZhivotnye(){
