@@ -528,32 +528,32 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
     private Optional<Joke> getRandomJokeZhivotnye(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(601,MAX_JOKE_ZHIVOTNYE)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private Optional<Joke> getRandomJokeMuzhZhena(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(701,MAX_JOKE_MUZHANDZHENA)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private Optional<Joke> getRandomJokeRabota(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(801,MAX_JOKE_RABOTA)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private Optional<Joke> getRandomJokeSport(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(901,MAX_JOKE_SPORT)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private Optional<Joke> getRandomJokeStudent(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(1001,MAX_JOKE_STUDENTY)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private Optional<Joke> getRandomJokeChernyYmor(){
         var r=new Random();
-        var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
+        var randomId= r.nextInt(1101,MAX_JOKE_CHERNYYMOR)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
     private void addButtonAndEditTextAuto(long chatId,String joke,Integer messageId){//методдля обновление шуток в сообщении
