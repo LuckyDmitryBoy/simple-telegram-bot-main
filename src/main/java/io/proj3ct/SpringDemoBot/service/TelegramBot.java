@@ -8,6 +8,7 @@ import io.proj3ct.SpringDemoBot.config.BotConfig;
 import io.proj3ct.SpringDemoBot.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
@@ -35,6 +36,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AdsRepository adsRepository;
     @Autowired
     private JokeRepository jokeRepository;
     @Autowired
@@ -105,6 +108,8 @@ public class TelegramBot extends TelegramLongPollingBot {
     private static final String NEXT_JOKE_SPORT="NEXT_JOKE_SPORT";
     private static final String NEXT_JOKE_STUDENTY="NEXT_JOKE_STUDENTY";
     private static final String NEXT_JOKE_CHERNYYMOR="NEXT_JOKE_CHERNYYMOR";
+    private static final String VOSYES="VOSYES";
+    private static final String VOSNO="VOSNO";
     static final String ELSE_TOPIC="ELSE_TOPIC";
     static final String JOKE="Анекдоты";
     static final String HELP="Помощь";
@@ -166,6 +171,14 @@ public class TelegramBot extends TelegramLongPollingBot {
         if (update.hasMessage() && update.getMessage().hasText()) {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
+            if(messageText.contains("/send") && config.getOwnerId()==chatId){//владелец бота может отпраить всем сообщение по команде /send
+                var textToSend=EmojiParser.parseToUnicode(messageText.substring(messageText.indexOf(" ")));
+                var users=userRepository.findAll();
+                for(User user:users){
+                    sendMessage(user.getChatId(),textToSend);
+                }
+            }
+            else {
 
                 switch (messageText) {
                     case "/start":
@@ -222,7 +235,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         prepareAndSendMessage(chatId, "Извините, команда не распознана.\n"+
                                 "Пожалуйста, введите корректную команду либо нажмите /help");
 
-                }
+                }}
         }
         else if(update.hasCallbackQuery()){
             String callbackData=update.getCallbackQuery().getData();
@@ -460,9 +473,15 @@ public class TelegramBot extends TelegramLongPollingBot {
                 joke.ifPresent(randomJoke -> addButtonAndEditTextProgr(chatId,randomJoke.getBody(),update.getCallbackQuery().getMessage().getMessageId()));
             }
             else if(callbackData.equals(VOSEMNADCATPLUS)){
-                var joke=getRandomJokeVospl();
-                joke.ifPresent(randomJoke -> addButtonAndEditTextVosemPlus(chatId,randomJoke.getBody(),update.getCallbackQuery().getMessage().getMessageId()));
+                addButtonAndEditTextVosemPlusYesOrNo(chatId,"Вам уже исполнилось 18 лет?");
             }
+           else if(callbackData.equals(VOSYES)){
+               var joke=getRandomJokeVospl();
+               joke.ifPresent(randomJoke -> addButtonAndEditTextVosemPlus(chatId,randomJoke.getBody(),update.getCallbackQuery().getMessage().getMessageId()));
+           }
+           else if(callbackData.equals(VOSNO)){
+               jokeButtons(chatId,"Выберете тематику анекдотов");
+           }
             else if(callbackData.equals(ARMIA)){
                 var joke=getRandomJokeArmia();
                 joke.ifPresent(randomJoke -> addButtonAndEditTextArmia(chatId,randomJoke.getBody(),update.getCallbackQuery().getMessage().getMessageId()));
@@ -669,7 +688,29 @@ public class TelegramBot extends TelegramLongPollingBot {
         markup.setKeyboard(rowsInLine);
         message.setReplyMarkup(markup);
         sendEditMessageText(message);
+    }
+    private void addButtonAndEditTextVosemPlusYesOrNo(long chatId,String messageId){//методдля обновление шуток в сообщении
+        SendMessage message=new SendMessage();
+        message.setChatId(chatId);
+        message.setText(messageId);
 
+        InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
+        List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
+        var inLineKeyBoardButton1=new InlineKeyboardButton();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton1.setCallbackData(VOSYES);
+        inLineKeyBoardButton2.setCallbackData(VOSNO);
+        inLineKeyBoardButton1.setText("Да");
+        inLineKeyBoardButton2.setText("Нет");
+        rowInLine.add(inLineKeyBoardButton1);
+        rowInLine.add(inLineKeyBoardButton2);
+        rowsInLine.add(rowInLine);
+
+        markup.setKeyboard(rowsInLine);
+        message.setReplyMarkup(markup);
+        send(message);
     }
     private void addButtonAndEditTextArmia(long chatId,String joke,Integer messageId){//методдля обновление шуток в сообщении
         EditMessageText message=new EditMessageText();
@@ -835,7 +876,16 @@ public class TelegramBot extends TelegramLongPollingBot {
     private void showStart(long chatId, String name) {
 
 
-        String answer = EmojiParser.parseToUnicode("Здравствуйте, " + name + ", рад приветствовать Вас в своём многофункциональном telegram-боте MultiBot!" + " :blush:");
+        String answer = EmojiParser.parseToUnicode("Здравствуйте, " + name + " !\n"+
+                "Рад приветствовать Вас в своём многофункциональном telegram-боте MultiBot!" + " :blush:\n\n")+
+                "Хотите узнать погоду на сегодня? Интересны курсы валют? Или просто хотите посмеяться?\n"+
+                "Тогда Multibot к Вашим услугам!\n\n"+
+                "Нажмите /weather ,чтобы узнать прогноз погоды для Вашего города\n" +
+                "Нажмите /currency ,чтобы узнать актуальный курс валют на сегодня согласно НБРБ\n"+
+                "Нажмите /joke ,чтобы почитать анекдоты и поднять себе настроение\n"+
+                "Нажмите /help , если Вам нужна помощь\n\n\n\n\n"+
+                "У Вас есть вопросы, предложения или Вы хотите разместить рекламу?\n"+
+                "Моя почта: lukadmy@gmail.com";
         log.info("Replied to user " + name);
 
 
@@ -892,10 +942,10 @@ public class TelegramBot extends TelegramLongPollingBot {
             currency = CurrencyService.getCurrencyRate(messageText, currencyModel);
 
         } catch (IOException e) {
-            sendMessage(chatId, "We have not found such a currency." + "\n" +
-                    "Enter the currency whose official exchange rate" + "\n" +
-                    "you want to know in relation to BYN." + "\n" +
-                    "For example: USD");
+            sendMessage(chatId, "Мы не нашли курс для заданной Вами валюты." + "\n" +
+                    "Введите название денежной единицы" + "\n" +
+                    "если Вы хотите узнать соотношение к BYN." + "\n" +
+                    "Например: USD");
         } catch (ParseException e) {
             throw new RuntimeException("Unable to parse date");
         }
@@ -1227,9 +1277,9 @@ public class TelegramBot extends TelegramLongPollingBot {
             wearther = WeartherService.getWearther(messageText,weartherModel);
 
         } catch (IOException e) {
-            sendMessage(chatId, "We have not found such a city." + "\n" +
-                    "Enter the city" + "\n" +
-                    "For example: Minsk");
+            sendMessage(chatId, "Мы не нашли города с таким названием" + "\n" +
+                    "Введите название города" + "\n" +
+                    "Например: Минск");
         }
         sendMessage(chatId, wearther);
     }
@@ -1250,5 +1300,15 @@ public class TelegramBot extends TelegramLongPollingBot {
             log.info("user Saved "+user);
         }
 
+    }
+    @Scheduled(cron = "${cron.scheduler}")
+    private void sendAds(){
+        var ads=adsRepository.findAll();
+        var users=userRepository.findAll();
+        for (Ads ad:ads){
+            for (User user:users){
+                prepareAndSendMessage(user.getChatId(),ad.getAd());
+            }
+        }
     }
 }

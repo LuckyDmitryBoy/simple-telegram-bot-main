@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 //@EnableScheduling
 @Data
 @PropertySource("application.properties")
+@EnableScheduling //отправка сообщений пользователям
 public class BotConfig {
 
     @Value("${bot.name}")
