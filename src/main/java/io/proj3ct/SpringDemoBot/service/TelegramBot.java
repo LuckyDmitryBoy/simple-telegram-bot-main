@@ -584,13 +584,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_AUTO);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -607,13 +611,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_MEDICINE);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -630,13 +638,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_POGODA);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -653,13 +665,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_PROGRAM);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -676,13 +692,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_VOSPLUS);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -721,13 +741,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_ARMIA);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -744,13 +768,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_ZHIVOTNOE);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -767,13 +795,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_MUZHANDZHENA);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -790,15 +822,20 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_RABOTA);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
+
         markup.setKeyboard(rowsInLine);
         message.setReplyMarkup(markup);
         sendEditMessageText(message);
@@ -813,13 +850,17 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_SPORT);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
         markup.setKeyboard(rowsInLine);
@@ -836,15 +877,20 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_STUDENTY);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
+
         markup.setKeyboard(rowsInLine);
         message.setReplyMarkup(markup);
         sendEditMessageText(message);
@@ -859,15 +905,20 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup=new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rowsInLine=new ArrayList<>();
         List<InlineKeyboardButton> rowInLine=new ArrayList<>();
+
         var inLineKeyBoardButton1=new InlineKeyboardButton();
-        var inLineKeyBoardButton2=new InlineKeyboardButton();
         inLineKeyBoardButton1.setCallbackData(NEXT_JOKE_CHERNYYMOR);
-        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
         inLineKeyBoardButton1.setText(EmojiParser.parseToUnicode("следующий анекдот "+":rolling_on_the_floor_laughing:"));
-        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton1);
+        rowsInLine.add(rowInLine);
+
+        rowInLine=new ArrayList<>();
+        var inLineKeyBoardButton2=new InlineKeyboardButton();
+        inLineKeyBoardButton2.setCallbackData(ELSE_TOPIC);
+        inLineKeyBoardButton2.setText("сменить тему");
         rowInLine.add(inLineKeyBoardButton2);
         rowsInLine.add(rowInLine);
+
         markup.setKeyboard(rowsInLine);
         message.setReplyMarkup(markup);
         sendEditMessageText(message);
