@@ -1352,7 +1352,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
     }
-    @Scheduled(cron = "${cron.scheduler}")
+  /*  @Scheduled(cron = "${cron.scheduler}")
     private void sendAds(){
         var ads=adsRepository.findAll();
         var users=userRepository.findAll();
@@ -1361,5 +1361,5 @@ public class TelegramBot extends TelegramLongPollingBot {
                 prepareAndSendMessage(user.getChatId(),ad.getAd());
             }
         }
-    }
+    }*/
 }
