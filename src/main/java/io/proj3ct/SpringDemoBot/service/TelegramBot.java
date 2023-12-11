@@ -36,7 +36,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
+     @Autowired
     private AdsRepository adsRepository;
     @Autowired
     private JokeRepository jokeRepository;
@@ -179,10 +179,9 @@ public class TelegramBot extends TelegramLongPollingBot {
                 }
             }
             else {
-
                 switch (messageText) {
                     case "/start":
-                        registerUser(update.getMessage());
+                       registerUser(update.getMessage());
                         showStart(chatId, update.getMessage().getChat().getFirstName());
                         try {
                             ObjectMapper objectMapper = new ObjectMapper();
@@ -218,7 +217,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                     case "Старт":
                         registerUser(update.getMessage());
                         showStart(chatId, update.getMessage().getChat().getFirstName());
-                        try {
+                       try {
                             ObjectMapper objectMapper = new ObjectMapper();
                             TypeFactory typeFactory = objectMapper.getTypeFactory();
                             List<Joke> jokeList = objectMapper.readValue(new File("db/stupidstuff.json"),
@@ -288,7 +287,8 @@ public class TelegramBot extends TelegramLongPollingBot {
                var joke=getRandomJokeChernyYmor();
                joke.ifPresent(randomJoke -> addButtonAndEditTextChernyYmor(chatId,randomJoke.getBody(),update.getCallbackQuery().getMessage().getMessageId()));
            }
-            else if(callbackData.equals(USD)){
+            else
+                if(callbackData.equals(USD)){
                 var message="USD";
                 currencyExchange(chatId,message);
             }
@@ -520,7 +520,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         var randomId= r.nextInt(MAX_JOKE_AUTO)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
     }
-    private Optional<Joke> getRandomJokeMedicine(){
+     private Optional<Joke> getRandomJokeMedicine(){
         var r=new Random();
         var randomId= r.nextInt(101,MAX_JOKE_MEDICINE)+1;
         return jokeRepository.findById(randomId);//ищем шутки под этим айди
@@ -926,20 +926,12 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
     private void showStart(long chatId, String name) {
 
-
         String answer = EmojiParser.parseToUnicode("Здравствуйте, " + name + " !\n"+
-                "Рад приветствовать Вас в своём многофункциональном telegram-боте MultiBot!" + " :blush:\n\n")+
-                "Хотите узнать погоду на сегодня? Интересны курсы валют? Или просто хотите посмеяться?\n"+
-                "Тогда Multibot к Вашим услугам!\n\n"+
                 "Нажмите /weather ,чтобы узнать прогноз погоды для Вашего города\n" +
                 "Нажмите /currency ,чтобы узнать актуальный курс валют на сегодня согласно НБРБ\n"+
                 "Нажмите /joke ,чтобы почитать анекдоты и поднять себе настроение\n"+
-                "Нажмите /help , если Вам нужна помощь\n\n\n\n\n"+
-                "У Вас есть вопросы, предложения или Вы хотите разместить рекламу?\n"+
-                "Моя почта: lukadmy@gmail.com";
+                "Нажмите /help , если Вам нужна помощь");
         log.info("Replied to user " + name);
-
-
         sendMessage(chatId, answer);
     }
 
